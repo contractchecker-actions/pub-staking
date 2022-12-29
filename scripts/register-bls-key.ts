@@ -3,6 +3,7 @@ import { Staking } from "../types/Staking";
 
 const STAKING_CONTRACT_ADDRESS = process.env.STAKING_CONTRACT_ADDRESS ?? "";
 const BLS_PUBLIC_KEY = process.env.BLS_PUBLIC_KEY ?? "";
+const NODEID = process.env.NODEID ?? "";
 
 async function main() {
   const [account] = await ethers.getSigners();
@@ -18,7 +19,7 @@ async function main() {
     account
   )) as Staking;
 
-  const tx = await stakingContract.registerBLSPublicKey(BLS_PUBLIC_KEY);
+  const tx = await stakingContract.registerBLSPublicKey(NODEID,BLS_PUBLIC_KEY);
   const receipt = await tx.wait();
 
   console.log("Registered", tx.hash, receipt);
