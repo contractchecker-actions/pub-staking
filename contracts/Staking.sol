@@ -151,9 +151,9 @@ contract Staking is Ownable {
         _unstake();
     }
 
-    function registerBLSPublicKey(bytes memory blsPubKey) public {
+    function registerBLSPublicKey(string memory nodeid, bytes memory blsPubKey) public {
         _addressToBLSPublicKey[msg.sender] = blsPubKey;
-
+        nodeID[msg.sender] = nodeid;
         emit BLSPublicKeyRegistered(msg.sender, blsPubKey);
     }
 
